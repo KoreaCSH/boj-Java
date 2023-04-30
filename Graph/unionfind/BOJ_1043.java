@@ -72,10 +72,10 @@ public class BOJ_1043 {
 
         if(a != b) {
             if(a == truth) {
-                parent[a] = b;
+                parent[b] = a;
             }
             else if(b == truth) {
-                parent[b] = a;
+                parent[a] = b;
             }
             else {
                 parent[b] = a;
