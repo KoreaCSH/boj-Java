@@ -27,7 +27,7 @@ class Node3 implements Comparable<Node3> {
 public class BOJ_1854 {
 
     static int n, m, k;
-    static boolean[] visited;
+    // static boolean[] visited; - 여러번 방문할 수 있기 때문에 visited[]를 검사할 필요가 없다.
     static PriorityQueue<Integer>[] distance;
     static PriorityQueue<Node3> pq = new PriorityQueue<>();
     static ArrayList<Node3>[] graph;
@@ -41,7 +41,6 @@ public class BOJ_1854 {
         m = Integer.parseInt(st.nextToken());
         k = Integer.parseInt(st.nextToken());
 
-        visited = new boolean[n+1];
         distance = new PriorityQueue[n+1];
         for(int i = 1; i < n+1; i++) {
             distance[i] = new PriorityQueue<>(k, new Comparator<Integer>() {
@@ -68,10 +67,6 @@ public class BOJ_1854 {
         distance[1].add(0);
         while(!pq.isEmpty()) {
             Node3 now = pq.poll();
-//            if(visited[now.vertex]) {
-//                continue;
-//            }
-//            visited[now.vertex] = true;
             for(Node3 next : graph[now.vertex]) {
                 if(distance[next.vertex].size() < k) {
                     distance[next.vertex].add(now.value + next.value);
